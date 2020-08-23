@@ -1,0 +1,22 @@
+#Function Caching in Python
+"""
+Function caching allows us to cache the return values of a 
+function depending on the arguments. It can save time when an I/O bound function is periodically called with the same arguments. ..
+. In Python 3.2+ there is an lru_cache decorator which allows us to quickly cache and uncache the return values of a function.
+"""
+
+import time
+from functools import lru_cache
+
+@lru_cache(maxsize=3)
+def some_work(n):
+    #some task taking n seconds
+    time.sleep(n)
+    return n
+
+if __name__ == '__main__':
+    print("Now running some work")
+    some_work(3)
+    print("Done Again-----Calling again")
+    some_work(3)
+    print("Called Again")
